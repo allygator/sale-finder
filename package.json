@@ -5,14 +5,18 @@
   "dependencies": {
     "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.3",
+    "firebase": "^6.2.3",
     "netlify-lambda": "^1.4.13",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-with-firebase-auth": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:lambda": "netlify-lambda serve src/functions",
     "build": "react-scripts build",
+    "build:lambda": "netlify-lambda build src/functions",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
