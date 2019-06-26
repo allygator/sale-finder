@@ -2,25 +2,20 @@ import React from 'react';
 import withFirebaseAuth from 'react-with-firebase-auth'
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import configFile from './firebaseConfig';
 import logo from './logo.svg';
 import './App.css';
 
-let config = {};
+require('dotenv').config()
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    config=configFile;
-} else {
-    config = {
-      apiKey: process.env.firebase_api,
-      authDomain: process.env.firebase_authDomain,
-      databaseURL: process.env.firebase_databaseURL,
-      projectId: process.env.firebase_projectId,
-      storageBucket: process.env.firebase_storageBucket,
-      messagingSenderId: process.env.firebase_messagingSenderId,
-      appId: process.env.firebase_appId
+let config = {
+      apiKey: process.env.REACT_APP_FIREBASE_API,
+      authDomain: process.env.REACT_APP_AUTHDOMAIN,
+      databaseURL: process.env.REACT_APP_DATABASEURL,
+      projectId: process.env.REACT_APP_PROJECTID,
+      storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+      messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+      appId: process.env.REACT_APP_APPID
     };
-}
 
 const firebaseApp = firebase.initializeApp(config);
 const firebaseAppAuth = firebaseApp.auth();
