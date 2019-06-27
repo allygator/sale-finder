@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
 
 require('dotenv').config()
 
@@ -31,7 +32,7 @@ function App(props) {
     } = props;
   return (
       <div className="App">
-      <header className="App-header">
+      <Header />
         <img src={logo} className="App-logo" alt="logo" />
         {
           user
@@ -43,12 +44,10 @@ function App(props) {
             ? <button onClick={signOut}>Sign out</button>
             : <button onClick={signInWithGoogle}>Sign in with Google</button>
         }
-      </header>
+
     </div>
   );
 }
-
-
 
 export default withFirebaseAuth({
   providers,
