@@ -33,6 +33,7 @@ function App(props) {
   return (
       <div className="App">
       <Header />
+      <div id="content">
         <img src={logo} className="App-logo" alt="logo" />
         {
           user
@@ -44,7 +45,7 @@ function App(props) {
             ? <button onClick={signOut}>Sign out</button>
             : <button onClick={signInWithGoogle}>Sign in with Google</button>
         }
-
+    </div>
     </div>
   );
 }
