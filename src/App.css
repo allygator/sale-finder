@@ -1,4 +1,46 @@
-#content {
+.content {
     position: relative;
     top: -50px;
+    padding-top: 50px;
+}
+
+.dashboard {
+    margin-top: 1%;
+}
+
+#panels {
+    display: grid;
+    width: 85%;
+    margin: auto;
+    grid-gap: 5% 2%;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.panel .icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel .icons>svg {
+    width: 17%;
+    height: 11.5%;
+    fill: rgba(0, 0, 0, 0.54);
+}
+
+#uniqloLogo {
+    margin: 5px 0 0 0;
+    padding: 3px;
+    width: 11.5%;
+    height: 11.5%;
+    background-color: #ed1d24;
+}
+
+#uniqloLogo path {
+    fill: white;
 }

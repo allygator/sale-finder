@@ -3,13 +3,15 @@ import React from 'react';
 function Waves() {
     return (
         <div className="wave"><svg width="100%" height="410px" viewBox="0 0 1200 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(-20,80)">
+        <g transform="translate(-20,40)">
             <path id="curveone" d="
-                        M -50 60
-                        L -50 140
-                        L 1300 140
-                        L 1300 60
-                        S 1098 0 1028 52 S 584 -26 469 64 S 122 -80 -50 60"/>
+                M-63 66
+                V175
+                H1520
+                V90
+                C1520 90 1444 -44 1273 19
+                C1013 153 860 -79 545 71
+                C384 175 138 -125 -63 66Z"/>
             <path id="curvetwo" d="
                         M -50 30
                         L -50 140

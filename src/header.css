@@ -87,9 +87,9 @@
 
 .boatHolder {
     position: absolute;
-    top: -4vh;
-    left: -3vh;
-    transform: scale(0.5);
+    top: -12vh;
+    left: -7vh;
+    transform: scale(0.4);
     /* top: 62vh;
     left: 50vh;
     transform: scale(4); */
@@ -120,4 +120,17 @@
 @keyframes swing {
   0%, 100% { transform: rotate(-3deg); }
   50% { transform: rotate(3deg); }
+}
+
+@media screen and (min-width: 1000px) {
+    .wave g {
+        transform: translate(-75px, 78px);
+    }
+
+    .boatHolder {
+        position: absolute;
+        top: -4vh;
+        left: -3vh;
+        transform: scale(0.5);
+    }
 }

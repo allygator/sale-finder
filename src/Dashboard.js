@@ -1,23 +1,19 @@
 import React from 'react';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import logo from './logo.svg';
-import './App.css';
-import Header from './Header';
+import items from './userdata.js';
+// import Header from './Header';
+import Panel from './Panel';
 
 require('dotenv').config()
 
-function Dashboard(props) {
-  return (
-      <div className="Dashboard">
-      <Header />
-      <div id="content">
-        <img src={logo} className="App-logo" alt="logo" />
-        
+function Dashboard() {
+    const panels = items.map((item) => <Panel data={item} key={item.itemName}/> );
+    return (
+        <div className="dashboard">
+        <div id="content">
+            <div id="panels">{panels}</div>
+        </div>
     </div>
-    </div>
-  );
+);
 }
 
 export default Dashboard;
