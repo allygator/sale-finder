@@ -25,7 +25,7 @@ function App() {
     // to contain the new data
     useEffect(() => {
         userUpdate(user);
-        console.log(user);
+        
     }, [user])
     //This function is passed to the context provider so that
     // down range children can update the context

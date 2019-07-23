@@ -9,7 +9,7 @@ function Dashboard() {
     const panels = items.map((item) => <Panel data={item} key={item.itemName}/> );
     const userContext = useContext(UserContext);
     const userData = userContext.authUser;
-    if(userData){console.log(userData);}
+    
     return (
         <div className="dashboard">
             {userData && <h1>Hello, {userData.displayName}</h1>}
