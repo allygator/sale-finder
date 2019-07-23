@@ -1,7 +1,7 @@
 import React from 'react';
-import Waves from './Waves';
-import Boat from './Boat'
-import './header.css';
+import Waves from '../svgs/Waves';
+import Boat from '../svgs/Boat'
+import '../styles/header.css';
 
 function Header(props) {
   return (

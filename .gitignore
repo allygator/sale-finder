@@ -27,3 +27,4 @@ yarn-error.log*
 /notes
 *.svg
 *.ai
+userdata.js

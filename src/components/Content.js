@@ -1,7 +1,7 @@
 import React from 'react';
 import Dashboard from './Dashboard';
 
-function Content(props) {
+function Content() {
   return (
       <div className="content">
         <Dashboard />

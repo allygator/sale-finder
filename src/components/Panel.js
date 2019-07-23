@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import SettingsIcon from '@material-ui/icons/Settings';
 import StoreIcon from '@material-ui/icons/Store';
 import IconButton from '@material-ui/core/IconButton';
-import Uniqlo from './Uniqlo'
+import Uniqlo from '../svgs/Uniqlo'
 
 function Panel(props) {
     let site = <StoreIcon />;
