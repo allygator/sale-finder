@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const axios = require( 'axios');
+import axios from 'axios';
 
 
 function Add() {
@@ -35,11 +35,11 @@ function Add() {
         axios.post('/.netlify/functions/getItem', {url: values.url})
             .then(function(response){
                 setFetchData(response.data);
-                let colorsCreater = Object.keys(response.data.options).map(function(key) {
-                    let itemColor = response.data.options[key].color;
-                    itemColor = itemColor.replace(/\s/g, '');
-                    checkStatusArray.push({[itemColor]: false});
-                });
+                // let colorsCreater = Object.keys(response.data.options).map(function(key) {
+                //     let itemColor = response.data.options[key].color;
+                //     itemColor = itemColor.replace(/\s/g, '');
+                //     checkStatusArray.push({[itemColor]: false});
+                // });
                 createCheckboxes(checkStatusArray);
                 let colors = Object.keys(response.data.options).map(function(key) {
                     let itemColor = response.data.options[key].color;
@@ -61,7 +61,7 @@ function Add() {
         };
         setCheck(checks);
     }
-    
+
     function setCheckboxes(bool) {
         setAll(bool);
         let keys = Object.keys(checkboxes);
@@ -82,15 +82,18 @@ function Add() {
               onChange={handleChange('url')}
               value="https://www.uniqlo.com/us/en/women-u-crew-neck-short-sleeve-t-shirt-421301.html?dwvar_421301_color=COL02#teesAnchor=&start=2&cgid=women-uniqlo-u"
             />
-            <Button variant="contained" onClick={(e)=> getItemData(e)}>
+        <Button id="submit" variant="contained" onClick={(e)=> getItemData(e)}>
             Submit
           </Button>
         </form>
     );
 
     let colorOptions = (
-        <div>
-        {values.itemOptions}
+        <div id="colorOptionsGroup">
+            <h3>Select Colors</h3>
+            <div id="colorOptions">
+                {values.itemOptions}
+            </div>
         {all ?
             (<Button variant="contained" onClick={()=> setCheckboxes(false)}>Select none</Button>)
             : (<Button variant="contained" onClick={()=> setCheckboxes(true)}>Select all </Button>)
@@ -100,6 +103,7 @@ function Add() {
 
     return (
         <Card className="addPanel">
+            <h2>Add An Item</h2>
             {values.submitted ? "" : urlBox}
             {values.submitted && colorOptions}
         </Card>
@@ -107,12 +111,3 @@ function Add() {
 }
 
 export default Add;
-//
-// <TextField
-//   required
-//   id="price"
-//   label="Target Price"
-//   type="number"
-//   defaultValue="10"
-//   onChange={handleChange('price')}
-// />

@@ -17,8 +17,8 @@ function Panel(props) {
           </IconButton>
           </div>
           <h2>{props.data.itemName}</h2>
-          <p>{props.data.curPrice}</p>
-          <p>{props.data.goalPrice}</p>
+          <p>Current: ${props.data.curPrice.toFixed(2)}</p>
+          <p>Goal: ${props.data.goalPrice.toFixed(2)}</p>
     </Card>
   );
 }
