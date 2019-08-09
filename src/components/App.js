@@ -24,9 +24,8 @@ function App() {
     //When an update to the  user object changes, update the context
     // to contain the new data
     useEffect(() => {
-        userUpdate(user);
-        
-    }, [user])
+        setState({...state, authUser: user});
+    }, [user, state])
     //This function is passed to the context provider so that
     // down range children can update the context
     function userUpdate(data) {
