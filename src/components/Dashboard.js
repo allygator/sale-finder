@@ -16,6 +16,10 @@ function Dashboard() {
         panels = items.map((item) => <Panel data={item} key={item.itemName}/> );
     }
 
+    function closePanel() {
+        togglePanel(false);
+    }
+
     return (
         <div className="dashboard">
             <div id="header">
@@ -29,7 +33,7 @@ function Dashboard() {
                         : <p>oh no, looks like you dont have any items! Lets go ahead and add one!</p>
                 }
 
-                {addPanel && <div id="addOverlay"><Add /></div>}
+                {addPanel && <div id="addOverlay"><Add closePanel={closePanel}/></div>}
 
             </div>
         </div>
