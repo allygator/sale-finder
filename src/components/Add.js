@@ -25,12 +25,23 @@ function Add(props) {
 
   function getItemData(e) {
     axios.post("/.netlify/functions/getItem", { url }).then(function(response) {
-      const colorsCreater = Object.values(response.data.options).map(function(value) {
-        let itemColor = value.color.replace(/\s/g, "");
-        return { [itemColor]: true };
-      });
-      createCheckboxes(colorsCreater);
-      // console.log(response.data);
+      const colorsInitialMap = Object.values(response.data.options)
+        // Map over received options to get a list of colors
+        .map(function extractColor(value) {
+          let itemColor = value.color.replace(/\s/g, "");
+          return itemColor;
+        })
+        // Create the initial map of colors given the list of colors provided
+        // Every value is `true` by default because every color is selected at first
+        .reduce(function createCheckboxMapEntry(acc, currentItemColor) {
+          return {
+            ...acc,
+            [currentItemColor]: true
+          };
+        }, {});
+
+      // TODO look into making a state machine to manage multiple state at the same time
+      setCheckValue(colorsInitialMap);
       setItem(response.data);
     });
   }
@@ -104,19 +115,6 @@ function Add(props) {
   //     }
   //
   // }, [prices, submitted, checkboxOptions]);
-
-  function createCheckboxes(checkboxArray) {
-    var checks = {};
-    // There is 100% a better way to do this but I havent found it yet
-    let thing = checkboxArray.map(function(item) {
-      let key = Object.keys(item)[0];
-      let value = Object.values(item)[0];
-      checks[key] = value;
-      return 1;
-    });
-    console.log(thing);
-    setCheckValue(checks);
-  }
 
   function setCheckboxes(bool) {
     setAll(bool);
