@@ -86,9 +86,7 @@ function Add(props) {
     }
     
     if (submitted.colors) {
-      let selectedOptions = Object.values(checkboxValue).filter(function(option) {
-        return Boolean(option);
-      });
+      let selectedOptions = Object.keys(checkboxValue).filter((key) => checkboxValue[key]);
       console.log(selectedOptions);
       let priceObj = Object.values(selectedOptions).map(function(colorOption) {
         // console.log(<TextField key={tempprices[key]} id={tempprices[key]} label={tempprices[key]} type="number"/>);
