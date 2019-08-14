@@ -12,7 +12,8 @@ function Add(props) {
   const [url, setURL] = useState(
     "https://www.uniqlo.com/us/en/women-u-crew-neck-short-sleeve-t-shirt-421301.html?dwvar_421301_color=COL02#teesAnchor=&start=2&cgid=women-uniqlo-u"
   );
-  const [prices, setPrices] = useState({});
+  const [priceOptions, setPriceOptions] = useState([]);
+  const [priceValues, setPriceValues] = useState({});
   const [submitted, setSubmitted] = useState({
     url: false,
     colors: false,
@@ -49,9 +50,8 @@ function Add(props) {
   useEffect(() => {
     let checkboxeslen = Object.keys(checkboxValue).length;
     if (itemData && checkboxeslen > 0) {
-      let options = Object.keys(itemData.options).map(function(key) {
-        let value = itemData.options[key].color;
-        value = value.replace(/\s/g, "");
+      let options = Object.values(itemData.options).map(function(option) {
+        const value = option.color.replace(/\s/g, "");
         // These checkboxes are incredibly slow to update, need to figure out how to make it faster
         return (
           <FormControlLabel
@@ -59,13 +59,13 @@ function Add(props) {
               <Checkbox
                 value={checkboxValue[value]}
                 onChange={e =>
-                  setCheckValue({ ...checkboxValue, [value]: e.target.checked })
+                  setCheckValue((currentCheckboxValue) => ({ ...currentCheckboxValue, [value]: e.target.checked }))
                 }
                 checked={checkboxValue[value]}
               />
             }
-            label={itemData.options[key].color}
-            key={itemData.options[key].color}
+            label={option.color}
+            key={value}
           />
         );
 
@@ -76,45 +76,46 @@ function Add(props) {
         //</div>
       });
       setCheckboxOptions(options);
-      setSubmitted({ ...submitted, url: true });
+      setSubmitted( (submitted) => ({ ...submitted, url: true }));
     }
-  }, [itemData, checkboxValue, submitted]);
+  }, [itemData, checkboxValue]);
 
   useEffect(() => {
-    let priceslen = Object.keys(prices).length;
-
-    if (submitted.colors && priceslen === 0) {
-      let tempprices = Object.keys(checkboxValue).filter(function(key) {
+    if(priceOptions.length !== 0) {
+      return;
+    }
+    
+    if (submitted.colors) {
+      let selectedOptions = Object.keys(checkboxValue).filter(function(key) {
         if (checkboxValue[key]) {
           return true;
         } else {
           return false;
         }
       });
-      let priceObj = Object.keys(tempprices).map(function(key) {
+      console.log(selectedOptions);
+      let priceObj = Object.values(selectedOptions).map(function(colorOption) {
         // console.log(<TextField key={tempprices[key]} id={tempprices[key]} label={tempprices[key]} type="number"/>);
         return (
           <TextField
-            key={tempprices[key]}
-            id={tempprices[key]}
-            label={tempprices[key]}
-            type="number"
+            key={colorOption}
+            id={colorOption}
+            label={colorOption}
+            // type="number"
+            value={colorOption}
           />
         );
       });
       console.log(priceObj);
-      setPrices(priceObj);
+      setPriceOptions(priceObj);
       console.log(checkboxOptions);
     }
-  }, [checkboxValue, submitted, prices, checkboxOptions]);
+  }, [checkboxValue, submitted, checkboxOptions, priceOptions]);
 
-  // useEffect(() => {
-  //     if(submitted.colors) {
-  //         console.log(checkboxOptions);
-  //         console.log(prices);
-  //     }
-  //
-  // }, [prices, submitted, checkboxOptions]);
+  useEffect(() => {
+      console.log("this has rendered");
+
+  }, []);
 
   function setCheckboxes(bool) {
     setAll(bool);
@@ -155,7 +156,7 @@ function Add(props) {
     setItem(null);
     setCheckValue({});
     setCheckboxOptions(null);
-    setPrices({});
+    // setPrices({});
     props.closePanel();
   }
 
@@ -214,6 +215,7 @@ function Add(props) {
 
   let priceInput = (
     <div id="price">
+      {priceOptions}
       <div id="navButtons">
         <Button
           className="backButton"
