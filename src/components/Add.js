@@ -86,12 +86,8 @@ function Add(props) {
     }
     
     if (submitted.colors) {
-      let selectedOptions = Object.keys(checkboxValue).filter(function(key) {
-        if (checkboxValue[key]) {
-          return true;
-        } else {
-          return false;
-        }
+      let selectedOptions = Object.values(checkboxValue).filter(function(option) {
+        return Boolean(option);
       });
       console.log(selectedOptions);
       let priceObj = Object.values(selectedOptions).map(function(colorOption) {
