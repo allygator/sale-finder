@@ -29,7 +29,7 @@ function Add(props) {
       const colorsInitialMap = Object.values(response.data.options)
         // Map over received options to get a list of colors
         .map(function extractColor(value) {
-          let itemColor = value.color.replace(/\s/g, "");
+          let itemColor = value.color;
           return itemColor;
         })
         // Create the initial map of colors given the list of colors provided
@@ -51,7 +51,7 @@ function Add(props) {
     let checkboxeslen = Object.keys(checkboxValue).length;
     if (itemData && checkboxeslen > 0) {
       let options = Object.values(itemData.options).map(function(option) {
-        const value = option.color.replace(/\s/g, "");
+        const value = option.color;
         // These checkboxes are incredibly slow to update, need to figure out how to make it faster
         return (
           <FormControlLabel
@@ -110,6 +110,13 @@ function Add(props) {
       console.log("this has rendered");
 
   }, []);
+
+  useEffect(() => {
+        if(submitted.colors) {
+            console.log(checkboxOptions);
+        }
+    
+    }, [submitted, checkboxOptions]);
 
   function setCheckboxes(bool) {
     setAll(bool);
